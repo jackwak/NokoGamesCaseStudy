@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 7186416972825983196}
   - component: {fileID: 985032102265518756}
   m_Layer: 0
-  m_Name: Spawner_Machine
+  m_Name: Transformer_Machine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
