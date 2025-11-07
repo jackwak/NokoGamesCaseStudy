@@ -643,12 +643,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transformer_Machine
       objectReference: {fileID: 0}
-    - target: {fileID: 5096798259358896472, guid: 2fc729bda14628644babe5f695f11b47,
-        type: 3}
-      propertyPath: _objectRenderer
-      value: 
-      objectReference: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
-        type: 3}
     - target: {fileID: 7186416972825983196, guid: 2fc729bda14628644babe5f695f11b47,
         type: 3}
       propertyPath: m_LocalPosition.x
