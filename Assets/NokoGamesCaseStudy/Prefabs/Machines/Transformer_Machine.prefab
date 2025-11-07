@@ -708,6 +708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaRenderer: {fileID: 8009130444099765971}
+  _objectRenderer: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
+    type: 3}
   _heightCount: 3
   _xCount: 5
   _zCount: 2
@@ -1065,6 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _areaRenderer: {fileID: 2281685718311249810}
+  _objectRenderer: {fileID: 0}
   _heightCount: 3
   _xCount: 5
   _zCount: 2

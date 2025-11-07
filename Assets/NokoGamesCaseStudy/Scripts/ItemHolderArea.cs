@@ -6,6 +6,7 @@ public class ItemHolderArea : MonoBehaviour
 {
     [Header(" References ")]
     [SerializeField] private Renderer _areaRenderer;
+    [SerializeField] private GameObject _objectRenderer;
 
     [Header(" Settings ")]
     [SerializeField] private int _heightCount;
@@ -26,7 +27,7 @@ public class ItemHolderArea : MonoBehaviour
 
     private void Start()
     {
-        InitializeItemPositions(_areaRenderer.transform.GetChild(0).GetComponent<Renderer>().bounds.size);
+        InitializeItemPositions(_objectRenderer.transform.GetChild(0).GetComponent<Renderer>().bounds.size);
     }
 
     public void InitializeItemPositions(Vector3 itemSize)
