@@ -8,25 +8,32 @@ public class PlayerController : MonoBehaviour
     
     [Header("References")]
     [SerializeField] private Animator _animator;
+
+    [Header(" Datas ")]
+    private bool _isMoving = false;
     
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
     
     private void Update()
     {
         Vector2 input = InputManager.Instance.MovementDirection;
+        bool isMoving = input != Vector2.zero; 
+
+        UpdateAnimator(isMoving);
         
-        UpdateAnimator(input);
-        
-        if (input == Vector2.zero) return;
+        if (!isMoving) return;
         
         Move(input);
         Rotate(input);
     }
     
-    private void UpdateAnimator(Vector2 input)
+    private void UpdateAnimator(bool isMoving)
     {
-        bool isMoving = input != Vector2.zero;
-        _animator.SetBool(IsRunning, isMoving);
+        if (_isMoving != isMoving)
+        {
+            _isMoving = isMoving;
+            _animator.SetBool(IsRunning, isMoving);
+        }
     }
     
     private void Move(Vector2 input)
