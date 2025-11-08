@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58aabbc05d59d84b956298405f95ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformedItem: {fileID: 213457582309727845, guid: 20be81772c211e74a9870f30cec473d6,
+  _transformedItem: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
     type: 3}
   _collectArea: {fileID: 999063454}
   _exitTransform: {fileID: 1810546315}
@@ -820,7 +820,7 @@ MonoBehaviour:
   _spawnedObject: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
     type: 3}
   _heightCount: 3
-  _xCount: 5
+  _xCount: 4
   _zCount: 2
   _xSpacing: 0
   _zSpacing: 0
