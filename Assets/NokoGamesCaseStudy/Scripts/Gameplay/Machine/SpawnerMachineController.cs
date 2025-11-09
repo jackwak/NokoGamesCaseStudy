@@ -1,3 +1,4 @@
+using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -8,6 +9,19 @@ public class SpawnerMachineController : BaseMachineController
 
     void Start()
     {
-        InvokeRepeating(nameof(TransformItem), _spawnInterval, _spawnInterval);
+        StartCoroutine(TransformItem());
+    }
+
+    private IEnumerator TransformItem()
+    {
+        do
+        {
+            Vector3? position = HasAvaiblePosition();
+            if (position != null)
+                TransformItem(position);
+
+            yield return new WaitForSeconds(_spawnInterval);
+        }
+        while (true);
     }
 }

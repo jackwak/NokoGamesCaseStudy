@@ -6,7 +6,7 @@ using DG.Tweening;
 public class BaseMachineController : MonoBehaviour
 {
     [Header(" Referenes ")]
-    [SerializeField] protected GameObject _transformedItem;
+    [SerializeField] protected Item _transformedItem;
     [SerializeField] protected ItemHolderArea _collectArea;
     [SerializeField] protected Transform _exitTransform;
     [SerializeField] protected Animator _animator;
@@ -17,7 +17,7 @@ public class BaseMachineController : MonoBehaviour
     [Header(" Datas ")]
     protected Vector3 _exitPosition;
     protected Transform _collectAreaItemHolder;
-    private bool _isWorking = false;
+    protected bool _isWorking = false;
     private int _isWorkingHash;
 
     protected virtual void Awake()
@@ -32,22 +32,14 @@ public class BaseMachineController : MonoBehaviour
         return _collectArea.GetAvaiblePosition();
     }
 
-    protected void TransformItem()
+    protected void TransformItem(Vector3? itemDropPosition)
     {
-        Vector3? itemDropPosition = HasAvaiblePosition();
-
-        if (itemDropPosition == null)
-        {
-            SetMachineState(false);
-            return;
-        }
-
-        SetMachineState(true);
-
-        GameObject transformedItem = Instantiate(_transformedItem, _collectAreaItemHolder);
+        Item transformedItem = Instantiate(_transformedItem, _collectAreaItemHolder);
         transformedItem.transform.position = _exitPosition;
-        transformedItem.transform.DOJump((Vector3)itemDropPosition, 1f, 1, _machineSettings.ItemArriveTime)
-            .OnComplete(() => _collectArea.AddItem(transformedItem));
+
+        transformedItem.transform.DOLocalRotate(Vector3.zero, _machineSettings.ItemArriveTime);
+        transformedItem.transform.DOJump((Vector3)itemDropPosition, 1f, 1, _machineSettings.ItemArriveTime);
+        _collectArea.AddItem(transformedItem);
     }
 
     protected void SetMachineState(bool isWorking)

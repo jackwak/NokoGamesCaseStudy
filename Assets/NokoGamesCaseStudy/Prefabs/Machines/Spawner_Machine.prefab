@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e58aabbc05d59d84b956298405f95ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformedItem: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
+  _transformedItem: {fileID: -5571113371389432419, guid: 36720648d8fa23e458dda4bd65f3235c,
     type: 3}
   _collectArea: {fileID: 2749320893905565291}
   _exitTransform: {fileID: 1721778369978320965}
@@ -657,6 +657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3182631680757443575}
   - component: {fileID: 2749320893905565291}
+  - component: {fileID: 2090355885339982366}
   m_Layer: 0
   m_Name: Collect_Area
   m_TagString: Untagged
@@ -696,11 +697,36 @@ MonoBehaviour:
   _areaRenderer: {fileID: 577666475129966509}
   _spawnedObject: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
     type: 3}
+  _itemHolderTransform: {fileID: 6744789175569001404}
+  _transformerMachineController: {fileID: 0}
+  _itemHolderType: 0
+  _itemType: 0
   _heightCount: 3
   _xCount: 4
   _zCount: 2
   _xSpacing: 0
   _zSpacing: 0
+--- !u!65 &2090355885339982366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388387460915916051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6846297052153539472
 GameObject:
   m_ObjectHideFlags: 0

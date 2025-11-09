@@ -7,22 +7,30 @@ public class ItemHolderArea : MonoBehaviour
     [Header(" References ")]
     [SerializeField] private Renderer _areaRenderer;
     [SerializeField] private GameObject _spawnedObject;
+    [SerializeField] private Transform _itemHolderTransform;
+    [SerializeField] private TransformerMachineController _transformerMachineController;
 
     [Header(" Settings ")]
+    [SerializeField] private ItemHolderType _itemHolderType;
+    [SerializeField] private ItemType _itemType;
     [SerializeField] private int _heightCount;
     [SerializeField] private int _xCount;
     [SerializeField] private int _zCount;
     [SerializeField] private float _xSpacing;
     [SerializeField] private float _zSpacing;
 
-
     private List<Vector3> _itemPositions;
-    private Stack<GameObject> _itemStack;
+    private Stack<Item> _itemStack;
+
+    public int ItemCount => _itemStack.Count;
+    public ItemHolderType ItemHolderType => _itemHolderType;
+    public ItemType ItemType => _itemType;
+    public Transform ItemHolderTransform => _itemHolderTransform;
 
     private void Awake()
     {
         _itemPositions = new List<Vector3>();
-        _itemStack = new Stack<GameObject>();
+        _itemStack = new Stack<Item>();
     }
 
     private void Start()
@@ -63,29 +71,47 @@ public class ItemHolderArea : MonoBehaviour
         }
     }
 
-    public void AddItem(GameObject item)
+    public bool IsCorrectArea(ItemType itemType)
     {
-        _itemStack.Push(item);
+        if (_itemType == itemType) return true;
+        else return false;
     }
 
-    public GameObject RemoveItem()
+    public void AddItem(Item item)
     {
-        if (_itemStack.Count == 0)
+        _itemStack.Push(item);
+
+        _transformerMachineController?.StartTransform();
+    }
+
+    public Item RemoveItem()
+    {
+        if (ItemCount > 0)
         {
-            return null;
+            return _itemStack.Pop();
         }
 
-        return _itemStack.Pop();
+        return null;
     }
 
     public Vector3? GetAvaiblePosition()
     {
-        if (_itemStack.Count >= _itemPositions.Count)
+        if (ItemCount >= _itemPositions.Count)
         {
             return null;
         }
 
         Vector3 nextPos = _itemPositions[_itemStack.Count];
         return nextPos;
+    }
+
+    public Item GetLastItem()
+    {
+        if (ItemCount > 0)
+        {
+            return _itemStack.Peek();
+        }
+
+        return null;
     }
 }

@@ -481,6 +481,37 @@ Transform:
   - {fileID: 4001299110529723298}
   m_Father: {fileID: 3204973781825238659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4325528854848909320
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925302600281138797}
+  m_Layer: 0
+  m_Name: Item_Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925302600281138797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4325528854848909320}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: -0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6183506081650760068}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4394367282388772243
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,7 +841,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6183506081650760068}
+  - component: {fileID: 9197498748091630291}
+  - component: {fileID: 5373783133316265180}
   - component: {fileID: 4551666484292218576}
+  - component: {fileID: 3701174309567624608}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -832,8 +866,59 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1217427796191182723}
+  - {fileID: 925302600281138797}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &9197498748091630291
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853885309494748661}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.24480692
+  m_Height: 1.2847059
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.65075624, z: 0}
+--- !u!54 &5373783133316265180
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853885309494748661}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &4551666484292218576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,9 +931,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d754a93ba16a50468c1d5168ec6a198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
+  _moveSpeed: 3
   _rotationSpeed: 10
   _animator: {fileID: 7271412563941763487}
+--- !u!114 &3701174309567624608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853885309494748661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2cdaf0fcf14ed842ba5bac1c0ee8201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemHolderTransform: {fileID: 925302600281138797}
+  _itemCollectInterval: 0.15
+  _itemArriveTime: 0.1
+  _maxItemCollectCount: 25
 --- !u!1 &6905946785263541067
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,7 +1059,7 @@ GameObject:
   - component: {fileID: 1217427796191182723}
   - component: {fileID: 7271412563941763487}
   m_Layer: 0
-  m_Name: PlayerCharacter
+  m_Name: Player_Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

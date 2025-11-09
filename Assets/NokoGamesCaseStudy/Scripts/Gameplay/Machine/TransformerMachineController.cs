@@ -21,6 +21,7 @@ public class TransformerMachineController : BaseMachineController
 
     public void StartTransform()
     {
+        if (_isWorking) return;
         StartCoroutine(StartTransformCoroutine());
     }
 
@@ -28,13 +29,25 @@ public class TransformerMachineController : BaseMachineController
     {
         yield return _machineSettings.StartCollectDelay;
 
+        SetMachineState(true);
+
         while (true)
         {
-            GameObject lastItem = _dropArea.RemoveItem();
-            if (lastItem == null) yield break;
-            lastItem.transform.DOMove(_entryPosition, _machineSettings.ItemArriveTime).OnComplete(() => TransformItem());
+            Vector3? itemDropPosition = HasAvaiblePosition();
+            Item lastItem = _dropArea.GetLastItem();
 
+            if (lastItem == null || itemDropPosition == null)
+            {
+                SetMachineState(false);
+                yield break;
+            }
+
+            lastItem = _dropArea.RemoveItem();
+            lastItem.transform.SetParent(_collectArea.ItemHolderTransform);
+            lastItem.transform.DOLocalRotate(Vector3.zero, _machineSettings.ItemArriveTime);
+            lastItem.transform.DOJump(_entryPosition, 1f, 1, _machineSettings.ItemArriveTime).OnComplete(() => TransformItem(itemDropPosition));
             yield return new WaitForSeconds(_machineSettings.ItemCollectInterval);
         }
+
     }
 }

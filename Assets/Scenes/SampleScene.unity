@@ -696,6 +696,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawner_Machine
       objectReference: {fileID: 0}
+    - target: {fileID: 1659429550913417377, guid: e5f0a18e20dabe54e9d938e8cff33147,
+        type: 3}
+      propertyPath: _transformedItem
+      value: 
+      objectReference: {fileID: -5571113371389432419, guid: 36720648d8fa23e458dda4bd65f3235c,
+        type: 3}
+    - target: {fileID: 2090355885339982366, guid: e5f0a18e20dabe54e9d938e8cff33147,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3528618857653059322, guid: e5f0a18e20dabe54e9d938e8cff33147,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -827,10 +838,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 95395486}
     m_Modifications:
+    - target: {fileID: 985032102265518756, guid: 2fc729bda14628644babe5f695f11b47,
+        type: 3}
+      propertyPath: _transformedItem
+      value: 
+      objectReference: {fileID: -5571113371389432419, guid: 36720648d8fa23e458dda4bd65f3235c,
+        type: 3}
     - target: {fileID: 2002863212621372970, guid: 2fc729bda14628644babe5f695f11b47,
         type: 3}
       propertyPath: m_Name
       value: Transformer_Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578432169463078879, guid: 2fc729bda14628644babe5f695f11b47,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7186416972825983196, guid: 2fc729bda14628644babe5f695f11b47,
         type: 3}

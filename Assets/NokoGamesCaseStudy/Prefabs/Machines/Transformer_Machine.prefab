@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd85df9e6fe51cb40a0fefba3ba7afd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformedItem: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
+  _transformedItem: {fileID: -3246396406683258252, guid: 20be81772c211e74a9870f30cec473d6,
     type: 3}
   _collectArea: {fileID: 6385876893176141954}
   _exitTransform: {fileID: 88874744332286238}
@@ -381,6 +381,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7775547189969567472}
   - component: {fileID: 5096798259358896472}
+  - component: {fileID: 4578432169463078879}
   m_Layer: 0
   m_Name: Drop_Area
   m_TagString: Untagged
@@ -420,11 +421,36 @@ MonoBehaviour:
   _areaRenderer: {fileID: 8009130444099765971}
   _spawnedObject: {fileID: 1347043778719602201, guid: 36720648d8fa23e458dda4bd65f3235c,
     type: 3}
+  _itemHolderTransform: {fileID: 6868651647499975260}
+  _transformerMachineController: {fileID: 985032102265518756}
+  _itemHolderType: 1
+  _itemType: 0
   _heightCount: 3
   _xCount: 5
   _zCount: 2
   _xSpacing: 0
   _zSpacing: 0
+--- !u!65 &4578432169463078879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742545660106145081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5621222087007952560
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3764844030887559756}
   - component: {fileID: 6385876893176141954}
+  - component: {fileID: 4387787503744307567}
   m_Layer: 0
   m_Name: Collect_Area
   m_TagString: Untagged
@@ -634,11 +661,36 @@ MonoBehaviour:
   _areaRenderer: {fileID: 2281685718311249810}
   _spawnedObject: {fileID: 213457582309727845, guid: 20be81772c211e74a9870f30cec473d6,
     type: 3}
-  _heightCount: 3
-  _xCount: 5
+  _itemHolderTransform: {fileID: 7796372464901182219}
+  _transformerMachineController: {fileID: 985032102265518756}
+  _itemHolderType: 0
+  _itemType: 1
+  _heightCount: 5
+  _xCount: 2
   _zCount: 2
   _xSpacing: 0
   _zSpacing: 0
+--- !u!65 &4387787503744307567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8141347962898652081}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.5, y: 1, z: 2.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8316576091925488996
 GameObject:
   m_ObjectHideFlags: 0
