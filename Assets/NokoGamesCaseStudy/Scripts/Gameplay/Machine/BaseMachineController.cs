@@ -37,7 +37,8 @@ public class BaseMachineController : MonoBehaviour
         Item transformedItem = Instantiate(_transformedItem, _collectAreaItemHolder);
         transformedItem.transform.position = _exitPosition;
 
-        transformedItem.transform.DOLocalRotate(Vector3.zero, _machineSettings.ItemArriveTime);
+        transformedItem.transform.SetParent(_collectAreaItemHolder);
+        transformedItem.transform.DORotate(Vector3.zero, _machineSettings.ItemArriveTime);
         transformedItem.transform.DOJump((Vector3)itemDropPosition, 1f, 1, _machineSettings.ItemArriveTime);
         _collectArea.AddItem(transformedItem);
     }
