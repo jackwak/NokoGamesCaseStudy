@@ -21,4 +21,9 @@ public class Item : MonoBehaviour
     {
         _rendererYSize = transform.GetChild(0).GetComponent<Renderer>().bounds.size.y;
     }
+
+    public void ReturnToPool()
+    {
+        Destroy(gameObject);
+    }
 }

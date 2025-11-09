@@ -45,7 +45,11 @@ public class TransformerMachineController : BaseMachineController
             lastItem = _dropArea.RemoveItem();
             lastItem.transform.SetParent(_collectArea.ItemHolderTransform);
             lastItem.transform.DOLocalRotate(Vector3.zero, _machineSettings.ItemArriveTime);
-            lastItem.transform.DOJump(_entryPosition, 1f, 1, _machineSettings.ItemArriveTime).OnComplete(() => TransformItem(itemDropPosition));
+            lastItem.transform.DOJump(_entryPosition, 1f, 1, _machineSettings.ItemArriveTime).OnComplete(() =>
+            {
+                TransformItem(itemDropPosition);
+                lastItem.ReturnToPool();
+            });
             yield return new WaitForSeconds(_machineSettings.ItemCollectInterval);
         }
 
