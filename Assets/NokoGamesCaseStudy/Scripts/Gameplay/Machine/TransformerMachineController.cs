@@ -6,7 +6,7 @@ using UnityEngine;
 public class TransformerMachineController : BaseMachineController
 {
     [Header(" References ")]
-    [SerializeField] private ItemHolderArea _dropArea;
+    [SerializeField] private BaseItemHolderArea _dropArea;
     [SerializeField] private Transform _entryTransform;
 
     [Header(" Datas ")]

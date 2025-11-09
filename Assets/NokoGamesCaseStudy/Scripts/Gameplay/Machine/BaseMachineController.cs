@@ -7,7 +7,7 @@ public class BaseMachineController : MonoBehaviour
 {
     [Header(" Referenes ")]
     [SerializeField] protected Item _transformedItem;
-    [SerializeField] protected ItemHolderArea _collectArea;
+    [SerializeField] protected BaseItemHolderArea _collectArea;
     [SerializeField] protected Transform _exitTransform;
     [SerializeField] protected Animator _animator;
 

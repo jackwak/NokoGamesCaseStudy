@@ -35,7 +35,7 @@ public class PlayerCollectController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ItemHolderArea itemHolderArea))
+        if (other.TryGetComponent(out BaseItemHolderArea itemHolderArea))
         {
             if (itemHolderArea.ItemHolderType == ItemHolderType.Collect)
             {
@@ -53,7 +53,7 @@ public class PlayerCollectController : MonoBehaviour
         StopAllCoroutines();
     }
 
-    private IEnumerator StartCollect(ItemHolderArea itemHolderArea)
+    private IEnumerator StartCollect(BaseItemHolderArea itemHolderArea)
     {
         do
         {
@@ -63,7 +63,7 @@ public class PlayerCollectController : MonoBehaviour
         while (true);
     }
 
-    private IEnumerator StartDrop(ItemHolderArea itemHolderArea)
+    private IEnumerator StartDrop(BaseItemHolderArea itemHolderArea)
     {
         do
         {
@@ -73,7 +73,7 @@ public class PlayerCollectController : MonoBehaviour
         while (true);
     }
 
-    private void AddItem(ItemHolderArea itemHolderArea)
+    private void AddItem(BaseItemHolderArea itemHolderArea)
     {
         Item item = itemHolderArea.GetLastItem();
         if (item == null || _maxItemCollectCount <= _items.Count || ((_items.Count > 0) && (CurrentItemType != itemHolderArea.ItemType))) return;
@@ -89,7 +89,7 @@ public class PlayerCollectController : MonoBehaviour
         item.transform.DOLocalJump(itemPosition, 1f, 1, _itemArriveTime);
     }
 
-    public void RemoveItem(ItemHolderArea itemHolderArea)
+    public void RemoveItem(BaseItemHolderArea itemHolderArea)
     {
         Vector3? targetPosition = itemHolderArea.GetAvaiblePosition();
         if (_items.Count <= 0 || targetPosition == null) return;

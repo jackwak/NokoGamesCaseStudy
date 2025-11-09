@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHolderArea : MonoBehaviour
+public class BaseItemHolderArea : MonoBehaviour
 {
     [Header(" References ")]
     [SerializeField] private Renderer _areaRenderer;
     [SerializeField] private GameObject _spawnedObject;
     [SerializeField] private Transform _itemHolderTransform;
-    [SerializeField] private TransformerMachineController _transformerMachineController;
 
     [Header(" Settings ")]
     [SerializeField] private ItemHolderType _itemHolderType;
@@ -77,11 +76,10 @@ public class ItemHolderArea : MonoBehaviour
         else return false;
     }
 
-    public void AddItem(Item item)
+    public virtual void AddItem(Item item)
     {
         _itemStack.Push(item);
 
-        _transformerMachineController?.StartTransform();
     }
 
     public Item RemoveItem()
