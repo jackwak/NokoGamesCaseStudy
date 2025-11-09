@@ -8,6 +8,8 @@ public class BaseItemHolderArea : MonoBehaviour
     [SerializeField] private Renderer _areaRenderer;
     [SerializeField] private GameObject _spawnedObject;
     [SerializeField] private Transform _itemHolderTransform;
+    [SerializeField] protected TransformerMachineController _transformerMachineController;
+
 
     [Header(" Settings ")]
     [SerializeField] private ItemHolderType _itemHolderType;
@@ -79,10 +81,9 @@ public class BaseItemHolderArea : MonoBehaviour
     public virtual void AddItem(Item item)
     {
         _itemStack.Push(item);
-
     }
 
-    public Item RemoveItem()
+    public virtual Item RemoveItem()
     {
         if (ItemCount > 0)
         {

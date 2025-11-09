@@ -6,7 +6,7 @@ using DG.Tweening;
 public class BaseMachineController : MonoBehaviour
 {
     [Header(" Referenes ")]
-    [SerializeField] protected Item _transformedItem;
+    [SerializeField] protected ItemType _spawnedItemType;
     [SerializeField] protected BaseItemHolderArea _collectArea;
     [SerializeField] protected Transform _exitTransform;
     [SerializeField] protected Animator _animator;
@@ -34,12 +34,14 @@ public class BaseMachineController : MonoBehaviour
 
     protected void TransformItem(Vector3? itemDropPosition)
     {
-        Item transformedItem = Instantiate(_transformedItem, _collectAreaItemHolder);
-        transformedItem.transform.position = _exitPosition;
+        GameObject itemObj = ItemPoolManager.Instance.GetItem(_spawnedItemType);
+        Item transformedItem = itemObj.GetComponent<Item>();
+        Transform itemTransform = itemObj.transform;
 
-        transformedItem.transform.SetParent(_collectAreaItemHolder);
-        transformedItem.transform.DORotate(Vector3.zero, _machineSettings.ItemArriveTime);
-        transformedItem.transform.DOJump((Vector3)itemDropPosition, 1f, 1, _machineSettings.ItemArriveTime);
+        itemTransform.position = _exitPosition;
+        itemTransform.SetParent(_collectAreaItemHolder);
+        itemTransform.DORotate(Vector3.zero, _machineSettings.ItemArriveTime);
+        itemTransform.DOJump((Vector3)itemDropPosition, 1f, 1, _machineSettings.ItemArriveTime);
         _collectArea.AddItem(transformedItem);
     }
 

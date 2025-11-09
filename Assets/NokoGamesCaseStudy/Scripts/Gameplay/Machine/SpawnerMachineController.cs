@@ -18,7 +18,14 @@ public class SpawnerMachineController : BaseMachineController
         {
             Vector3? position = HasAvaiblePosition();
             if (position != null)
+            {
                 TransformItem(position);
+                SetMachineState(true);
+            }
+            else
+            {
+                SetMachineState(false);
+            }
 
             yield return new WaitForSeconds(_spawnInterval);
         }

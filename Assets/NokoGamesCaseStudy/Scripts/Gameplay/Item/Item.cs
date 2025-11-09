@@ -24,6 +24,6 @@ public class Item : MonoBehaviour
 
     public void ReturnToPool()
     {
-        Destroy(gameObject);
+        ItemPoolManager.Instance.ReturnItem(gameObject);
     }
 }

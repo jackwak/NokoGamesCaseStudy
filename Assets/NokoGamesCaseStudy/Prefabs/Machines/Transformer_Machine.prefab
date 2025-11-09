@@ -131,8 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd85df9e6fe51cb40a0fefba3ba7afd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _transformedItem: {fileID: -3246396406683258252, guid: 20be81772c211e74a9870f30cec473d6,
-    type: 3}
+  _spawnedItemType: 1
   _collectArea: {fileID: 7771823169365878679}
   _exitTransform: {fileID: 88874744332286238}
   _animator: {fileID: 3825274524350112973}
@@ -451,6 +450,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7186416972825983196}
     m_Modifications:
+    - target: {fileID: 2941982447120632667, guid: d0125991aa561f441b5f659f601b8153,
+        type: 3}
+      propertyPath: _transformerMachineController
+      value: 
+      objectReference: {fileID: 985032102265518756}
     - target: {fileID: 3743874863632742269, guid: d0125991aa561f441b5f659f601b8153,
         type: 3}
       propertyPath: m_Name
