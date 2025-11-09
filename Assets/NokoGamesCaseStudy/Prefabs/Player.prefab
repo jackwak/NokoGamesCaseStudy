@@ -917,7 +917,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &4551666484292218576
 MonoBehaviour:
@@ -948,7 +948,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemHolderTransform: {fileID: 925302600281138797}
   _itemCollectInterval: 0.15
-  _itemArriveTime: 0.1
+  _itemArriveTime: 0.2
   _maxItemCollectCount: 25
 --- !u!1 &6905946785263541067
 GameObject:

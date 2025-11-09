@@ -17,7 +17,13 @@ public class PlayerCollectController : MonoBehaviour
     [Header(" Datas ")]
     private Stack<Item> _items;
 
-    public ItemType? CurrentItemType { get
+
+    public int ItemCount => _items.Count;
+    public Stack<Item> Items => _items;
+    public int MaxItemCollectCount => _maxItemCollectCount;
+    public ItemType? CurrentItemType
+    {
+        get
         {
             if (_items.Count > 0)
             {
@@ -26,7 +32,15 @@ public class PlayerCollectController : MonoBehaviour
             }
 
             return null;
-        } }
+        }
+    }
+
+    public Item GetTopItem()
+    {
+        if (_items.Count > 0)
+            return _items.Peek();
+        return null;
+    }
 
     void Awake()
     {
@@ -76,11 +90,12 @@ public class PlayerCollectController : MonoBehaviour
     private void AddItem(BaseItemHolderArea itemHolderArea)
     {
         Item item = itemHolderArea.GetLastItem();
-        if (item == null || _maxItemCollectCount <= _items.Count || ((_items.Count > 0) && (CurrentItemType != itemHolderArea.ItemType))) return;
+        if (item == null || _maxItemCollectCount <= ItemCount || ((ItemCount > 0) && (CurrentItemType != itemHolderArea.ItemType))) return;
 
-        float itemPosY = _items.Count * item.RendererYSize;
+        float itemPosY = ItemCount * item.RendererYSize;
         item.transform.SetParent(_itemHolderTransform);
         Vector3 itemPosition = Vector3.up * itemPosY;
+        Debug.Log(itemPosition);
 
         itemHolderArea.RemoveItem();
         _items.Push(item);

@@ -416,6 +416,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8601508018369886588, guid: c6b573766ad78fe48ad3a26dab1bf1a5,
         type: 3}
+      propertyPath: _xCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601508018369886588, guid: c6b573766ad78fe48ad3a26dab1bf1a5,
+        type: 3}
       propertyPath: _transformerMachineController
       value: 
       objectReference: {fileID: 985032102265518756}

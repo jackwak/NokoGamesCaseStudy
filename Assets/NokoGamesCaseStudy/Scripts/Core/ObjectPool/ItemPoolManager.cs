@@ -30,14 +30,7 @@ public class ItemPoolManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         _poolDictionary = new Dictionary<ItemType, ItemPoolData>();
         InitializeAllPools();
