@@ -19,7 +19,7 @@ public class BaseItemHolderArea : MonoBehaviour
     [SerializeField] private float _zSpacing;
 
     private List<Vector3> _itemPositions;
-    private Stack<Item> _itemStack;
+    protected Stack<Item> _itemStack;
 
     public int ItemCount => _itemStack.Count;
     public ItemHolderType ItemHolderType => _itemHolderType;
@@ -70,7 +70,7 @@ public class BaseItemHolderArea : MonoBehaviour
         }
     }
 
-    public bool IsCorrectArea(ItemType itemType)
+    public virtual bool IsCorrectArea(ItemType itemType)
     {
         if (_itemType == itemType) return true;
         else return false;
