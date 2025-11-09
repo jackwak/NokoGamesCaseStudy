@@ -18,88 +18,45 @@ public class AICharacterController : MonoBehaviour
     [SerializeField] private float _aiStoppingDistance = 1f;
     [SerializeField] private List<ItemType> _allowedItemTypes = new List<ItemType>();
 
-    [Header(" Datas ")]
-    private AIState _currentState;
+    private IAIState _currentState;
     private Vector3 _initialPosition;
     private Quaternion _initialRotation;
     private int _isWalkingHash;
+    private Coroutine _stateCoroutine;
 
-    void Awake()
+    public PlayerCollectController CollectController => _collectController;
+    public BaseItemHolderArea CollectArea => _collectArea;
+    public BaseItemHolderArea DropArea => _dropArea;
+    public float WorkDuration => _workDuration;
+    public float CheckInterval => _checkInterval;
+    public Vector3 InitialPosition => _initialPosition;
+
+    private void Awake()
     {
-        _currentState = AIState.Idle;
         _isWalkingHash = Animator.StringToHash("IsRunning");
-        
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
     }
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine(AILoop());
+        ChangeState(new IdleState());
     }
 
-    private IEnumerator AILoop()
+    public void ChangeState(IAIState newState)
     {
-        while (true)
+        if (_stateCoroutine != null)
         {
-            switch (_currentState)
-            {
-                case AIState.Idle:
-                    HandleIdleState();
-                    break;
-
-                case AIState.MovingToCollect:
-                    yield return MoveToArea(_collectArea);
-                    _currentState = AIState.Collecting;
-                    break;
-
-                case AIState.Collecting:
-                    yield return WorkAtArea(_collectArea, _workDuration);
-                    _currentState = AIState.Idle;
-                    break;
-
-                case AIState.MovingToDrop:
-                    yield return MoveToArea(_dropArea);
-                    _currentState = AIState.Dropping;
-                    break;
-
-                case AIState.Dropping:
-                    yield return WorkAtArea(_dropArea, _workDuration);
-                    _currentState = AIState.Idle;
-                    break;
-
-                case AIState.WaitingAtIdle:
-                    yield return WaitAtIdlePosition();
-                    break;
-            }
-
-            yield return null;
+            StopCoroutine(_stateCoroutine);
         }
+
+        _currentState?.Exit(this);
+        _currentState = newState;
+        _currentState.Enter(this);
+        _stateCoroutine = StartCoroutine(_currentState.Execute(this));
     }
 
-    private void HandleIdleState()
-    {
-        if (_collectController.ItemCount > 0)
-        {
-            if (CanDropToArea())
-            {
-                _currentState = AIState.MovingToDrop;
-            }
-            else
-            {
-                _currentState = AIState.WaitingAtIdle;
-            }
-            return;
-        }
-
-        if (CanCollectFromArea())
-        {
-            _currentState = AIState.MovingToCollect;
-            return;
-        }
-    }
-
-    private bool CanCollectFromArea()
+    public bool CanCollectFromArea()
     {
         if (_collectArea == null || _collectArea.ItemCount <= 0)
             return false;
@@ -114,7 +71,7 @@ public class AICharacterController : MonoBehaviour
         return _allowedItemTypes.Contains(areaItem.ItemType);
     }
 
-    private bool CanDropToArea()
+    public bool CanDropToArea()
     {
         if (_dropArea == null || _collectController.ItemCount <= 0)
             return false;
@@ -130,11 +87,10 @@ public class AICharacterController : MonoBehaviour
         return true;
     }
 
-    private IEnumerator MoveToArea(BaseItemHolderArea area)
+    public IEnumerator MoveToArea(BaseItemHolderArea area)
     {
         if (area == null) yield break;
 
-        SetWalkingState(true);
         Vector3 targetPosition = area.transform.position;
 
         while (Vector3.Distance(transform.position, targetPosition) > _aiStoppingDistance)
@@ -150,30 +106,9 @@ public class AICharacterController : MonoBehaviour
 
             yield return null;
         }
-
-        SetWalkingState(false);
     }
 
-    private IEnumerator WaitAtIdlePosition()
-    {
-        if (Vector3.Distance(transform.position, _initialPosition) > 0.5f)
-        {
-            yield return ReturnToIdlePosition();
-        }
-
-        while (true)
-        {
-            yield return new WaitForSeconds(_checkInterval);
-
-            if (CanDropToArea())
-            {
-                _currentState = AIState.Idle;
-                yield break;
-            }
-        }
-    }
-
-    private IEnumerator ReturnToIdlePosition()
+    public IEnumerator ReturnToIdlePosition()
     {
         SetWalkingState(true);
 
@@ -192,7 +127,7 @@ public class AICharacterController : MonoBehaviour
         }
 
         transform.position = _initialPosition;
-        
+
         float rotationTimer = 0f;
         float rotationDuration = 0.5f;
         Quaternion startRotation = transform.rotation;
@@ -208,7 +143,7 @@ public class AICharacterController : MonoBehaviour
         SetWalkingState(false);
     }
 
-    private IEnumerator WorkAtArea(BaseItemHolderArea area, float duration)
+    public IEnumerator WorkAtArea(BaseItemHolderArea area, float duration)
     {
         if (area == null) yield break;
 
@@ -233,18 +168,8 @@ public class AICharacterController : MonoBehaviour
         }
     }
 
-    private void SetWalkingState(bool isWalking)
+    public void SetWalkingState(bool isWalking)
     {
         _animator?.SetBool(_isWalkingHash, isWalking);
     }
-}
-
-public enum AIState
-{
-    Idle,
-    MovingToCollect,
-    Collecting,
-    MovingToDrop,
-    Dropping,
-    WaitingAtIdle
 }
